@@ -31,13 +31,13 @@ export const skills = [
 
 export const projects = [
   {
-    title: "Sistem Web Prediktif Berbasis Deep Learning",
-    category: "ML",
-    problem: "Klasifikasi data membutuhkan model prediktif yang dapat diakses melalui antarmuka web.",
-    solution: "Membangun alur aplikasi web yang menghubungkan model klasifikasi dengan API sehingga proses inferensi dapat digunakan secara lebih praktis.",
-    stack: ["Python", "TensorFlow", "REST API", "Web App"],
-    impact: "Pipeline klasifikasi siap diintegrasikan ke workflow aplikasi.",
-    demo: "#",
+    title: "Website Skrining Kesehatan Mandiri",
+    category: "Web / Healthtech",
+    problem: "Masyarakat membutuhkan sarana mandiri yang praktis untuk memantau tumbuh kembang balita, deteksi dini stunting, serta skrining risiko kesehatan secara terpadu.",
+    solution: "Membangun Single Page Application (SPA) arsitektur MVP dengan fitur kalkulator Z-score antropometri standar WHO/Kemenkes, pelacak siklus menstruasi, skrining kesehatan dewasa,dan informasi puskesmas.",
+    stack: ["JavaScript (ES6+)", "Webpack", "PWA", "REST API", "CSS3"],
+    impact: "Mempermudah masyarakat dalam melakukan deteksi dini risiko kesehatan dan stunting secara mandiri serta memperluas aksesibilitas layanan puskesmas.",
+    demo: "https://healthmatedkk.netlify.app/",
     source: "#",
   },
   {
@@ -51,7 +51,7 @@ export const projects = [
     source: "#",
   },
   {
-    title: "Sistem Pemeliharaan Prediktif Cerdas",
+    title: "Sistem Pemeliharaan Prediktif",
     category: "Machine Learning",
     problem: "Kegagalan operasional mesin pabrik yang tidak terduga menyebabkan downtime tak terencana dan biaya perbaikan tinggi.",
     solution: "Membangun sistem end-to-end dengan model XGBoost dan REST API FastAPI untuk mendeteksi potensi kegagalan mesin secara real-time.",
