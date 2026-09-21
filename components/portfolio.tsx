@@ -19,6 +19,7 @@ import {
   Menu,
   Sparkles,
   Star,
+  ShoppingBag,
   X,
 } from "lucide-react";
 import { useState } from "react";
@@ -221,12 +222,16 @@ export default function Portfolio() {
                 <span>{p.impact}</span>
               </div>
               <div className="project-links">
-                <a href={p.demo}>
-                  Live Demo <ExternalLink size={15} />
-                </a>
-                <a href={p.source}>
-                  Source Code <Github size={15} />
-                </a>
+                {p.demo && (
+                  <a href={p.demo} target="_blank" rel="noreferrer">
+                    {p.demo.match(/\.(jpeg|jpg|gif|png)$/) != null ? "Lihat Gambar" : "Live Demo"} <ExternalLink size={15} />
+                  </a>
+                )}
+                {p.source && (
+                  <a href={p.source} target="_blank" rel="noreferrer">
+                    Source Code <Github size={15} />
+                  </a>
+                )}
               </div>
             </article>
           ))}
@@ -264,6 +269,18 @@ export default function Portfolio() {
                     <li key={b}>{b}</li>
                   ))}
                 </ul>
+                {e.shopLink && (
+                  <div style={{ marginTop: "14px" }}>
+                    <a
+                      href={e.shopLink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="publication-link"
+                    >
+                      View on Etsy <ExternalLink size={13} />
+                    </a>
+                  </div>
+                )}
                 {e.publication && (
                   <div className="publication-card">
                     <div className="publication-header">
@@ -273,7 +290,7 @@ export default function Portfolio() {
                     <h4>{e.publication.title}</h4>
                     <p>{e.publication.summary}</p>
                     <a href={e.publication.url} target="_blank" rel="noreferrer" className="publication-link">
-                      Lihat Publikasi <ExternalLink size={14} />
+                      View Publication <ExternalLink size={14} />
                     </a>
                   </div>
                 )}
@@ -365,7 +382,7 @@ export default function Portfolio() {
           <span>
             © {new Date().getFullYear()} {profile.name}
           </span>
-          <span>Designed & built with Next.js · Open to opportunities</span>
+          <span> Open to opportunities</span>
         </div>
       </footer>
 
@@ -391,10 +408,6 @@ export default function Portfolio() {
             </button>
             <span className="eyebrow">CREDENTIAL</span>
             <h2>{cert.name}</h2>
-            <p>
-              Tambahkan file PDF sertifikat dan Credential URL pada
-              data/portfolio.ts untuk mengaktifkan preview final.
-            </p>
             <div className="modal-actions">
               <a
                 className="btn primary"
@@ -403,14 +416,6 @@ export default function Portfolio() {
                 rel="noreferrer"
               >
                 Preview PDF <ExternalLink size={16} />
-              </a>
-              <a
-                className="btn secondary"
-                href={cert.credential}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Credential URL <ArrowUpRight size={16} />
               </a>
             </div>
           </div>

@@ -4,14 +4,14 @@ export const profile = {
   location: "Semarang, Indonesia",
   email: "novendhimasnugroho@gmail.com",
   linkedin: "https://www.linkedin.com/in/y-noven-dhimas-nugroho",
-  github: "https://github.com/USERNAME",
+  github: "https://github.com/venadd",
   availability: "Open to opportunities",
   hero:
     "Hello! I'm Y Noven Dhimas Nugroho",
   subheadline:
     "A passionate Data Analyst and Machine Learning enthusiast with a strong background in Digital Product Development. I specialize in transforming complex data into actionable insights and building innovative digital solutions.",
   summary:
-    "I am a technology practitioner operating at the intersection of Data Science and Web Product Development. Experienced in end-to-end data pipelines—ranging from data cleaning, exploratory data analysis (EDA), and feature engineering to predictive model deployment.\n\nBeyond algorithms and statistics, I bring real-world experience building and commercializing digital products globally through CaptivDesign, fulfilling 800+ orders across 51 countries on Etsy with an average rating of 4.9 / 5.0.\n\nI hold an official certification from BNSP (Badan Nasional Sertifikasi Profesi) as an Associate Data Scientist (Ilmuan Data Madya) and graduated with distinction from the Coding Camp by DBS Foundation x Dicoding in Front-End and Back-End Web Development.",
+    "I am a technology practitioner operating at the intersection of Data Science and Web Product Development. Experienced in end-to-end data pipelines ranging from data cleaning, exploratory data analysis (EDA), and feature engineering to predictive model deployment.\n\nBeyond algorithms and statistics, I bring real-world experience building and commercializing digital products globally through CaptivDesign, fulfilling 800+ orders across 51 countries on Etsy with an average rating of 4.9 / 5.0.\n\nI hold an official certification from BNSP (Badan Nasional Sertifikasi Profesi) as an Associate Data Scientist (Ilmuan Data Madya) and graduated with distinction from the Coding Camp by DBS Foundation x Dicoding in Front-End and Back-End Web Development.",
 };
 
 export const highlights = [
@@ -29,7 +29,18 @@ export const skills = [
   { category: "Tools & Cloud", items: ["Git", "GitHub", "MongoDB", "PostgreSQL", "Power BI", "Figma"] },
 ];
 
-export const projects = [
+export interface ProjectItem {
+  title: string;
+  category: string;
+  problem: string;
+  solution: string;
+  stack: string[];
+  impact: string;
+  demo?: string;
+  source?: string;
+}
+
+export const projects: ProjectItem[] = [
   {
     title: "Website Skrining Kesehatan Mandiri",
     category: "Web / Healthtech",
@@ -38,41 +49,51 @@ export const projects = [
     stack: ["JavaScript (ES6+)", "Webpack", "PWA", "REST API", "CSS3"],
     impact: "Mempermudah masyarakat dalam melakukan deteksi dini risiko kesehatan dan stunting secara mandiri serta memperluas aksesibilitas layanan puskesmas.",
     demo: "https://healthmatedkk.netlify.app/",
-    source: "#",
   },
   {
-    title: "Platform Skrining Kesehatan & Analisis Data Terintegrasi",
-    category: "Data Analytics",
-    problem: "Dataset kesehatan publik memerlukan preprocessing, eksplorasi, dan analisis model sebelum dapat digunakan untuk skrining.",
-    solution: "Mengolah data dengan cleaning, feature engineering, EDA, lalu membandingkan XGBoost, Random Forest, dan Logistic Regression untuk deteksi risiko stunting.",
-    stack: ["Python", "XGBoost", "Random Forest", "EDA", "Lighthouse"],
-    impact: "Model dan dashboard skrining dibangun melalui workflow analitik terstruktur.",
-    demo: "#",
-    source: "#",
+    title: "Multi-Tenant POS & Inventory System",
+    category: "Web / Full-Stack",
+    problem: "Pencatatan transaksi dan stok UKM sering kali manual, rawan selisih, dan belum memiliki sistem kasir terisolasi yang aman.",
+    solution: "Membangun web POS dan inventori multi-tenant dengan RBAC, kartu stok, stock opname, cetak struk, serta proteksi keamanan (Bcrypt, Prepared Statements, CSRF/XSS).",
+    stack: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
+    impact: "Mempercepat transaksi harian, mencegah selisih stok barang, dan menjaga isolasi data antartoko secara aman dan terintegrasi.",
+    demo: "http://ekasirku.wuaze.com/eKasirku.php",
   },
   {
     title: "Sistem Pemeliharaan Prediktif",
     category: "Machine Learning",
     problem: "Kegagalan operasional mesin pabrik yang tidak terduga menyebabkan downtime tak terencana dan biaya perbaikan tinggi.",
-    solution: "Membangun sistem end-to-end dengan model XGBoost dan REST API FastAPI untuk mendeteksi potensi kegagalan mesin secara real-time.",
+    solution: "Membangun sistem end-to-end dengan model XGBoost dan REST API FastAPI untuk mendeteksi potensi kegagalan mesin.",
     stack: ["Python", "XGBoost", "FastAPI", "JavaScript", "Bootstrap 5"],
     impact: "Mengurangi downtime tak terencana dan mencegah kecelakaan operasional melalui prediksi kerusakan dan rekomendasi preventif.",
     demo: "https://predictive-maintenance-app-three.vercel.app/",
-    source: "#",
   },
   {
-    title: "Dashboard Business Intelligence & Sales Analytics",
+    title: "E-Commerce Sales Performance & Geospatial Dashboard",
     category: "Data Analytics",
-    problem: "Pelaporan metrik bisnis dan retensi produk digital dapat memerlukan pekerjaan manual berulang.",
-    solution: "Merancang dashboard analitik untuk merangkum metrik penjualan, performa produk, dan insight pelanggan secara lebih terstruktur.",
-    stack: ["Power BI", "SQL", "Data Analysis", "Dashboard"],
-    impact: "Pelaporan menjadi lebih terpusat dan insight bisnis lebih mudah dipantau.",
-    demo: "#",
-    source: "#",
+    problem: "Kesulitan memantau performa penjualan produk digital, efektivitas kupon diskon, dan persebaran pembeli.",
+    solution: "Membangun dashboard Power BI interaktif untuk menganalisis tren, AOV, distribusi produk terlaris, serta pemetaan geografis.",
+    stack: ["Power BI", "Data Modeling", "Business Intelligence", "Excel / CSV"],
+    impact: "Memberikan visibilitas menyeluruh terhadap performa penjualan produk.",
+    demo: "/dashboard-preview.png",
   },
 ];
 
-export const experience = [
+export interface ExperienceItem {
+  filter: string;
+  period: string;
+  title: string;
+  type: string;
+  bullets: string[];
+  shopLink?: string;
+  publication?: {
+    title: string;
+    summary: string;
+    url: string;
+  };
+}
+
+export const experience: ExperienceItem[] = [
   {
     filter: "work",
     period: "2023 — Sekarang",
@@ -85,6 +106,7 @@ export const experience = [
       "Melakukan riset pasar dan analisis kompetitor, serta mengoptimalkan performa produk menggunakan riset kata kunci dan strategi SEO pada marketplace Etsy.",
       "Menganalisis umpan balik pelanggan untuk meningkatkan kualitas produk dan pengalaman pengguna.",
     ],
+    shopLink: "https://captivdesign.etsy.com",
   },
   {
     filter: "work",
@@ -138,8 +160,10 @@ export const experience = [
 export const certifications = [
   { name: "BNSP Ilmuan Data Madya (Associate Data Scientist)", file: "/certificates/sertifikasi.pdf", credential: "#" },
   { name: "Certificate of Completion — Coding Camp Front-End & Back-End Developer", file: "/certificates/coding-camp.pdf", credential: "#" },
-  { name: "Belajar Back-End dengan JavaScript", file: "/certificates/sertifikasi.pdf", credential: "#" },
-  { name: "Belajar Pengembangan Web Intermediate", file: "/certificates/sertifikasi.pdf", credential: "#" },
-  { name: "Belajar Fundamental Front-End Web Development", file: "/certificates/sertifikasi.pdf", credential: "#" },
-  { name: "Fundamental Jaringan Komputer", file: "/certificates/sertifikasi.pdf", credential: "#" },
+  { name: "Belajar Back-End dengan JavaScript", file: "/certificates/Back-End.pdf", credential: "#" },
+  { name: "Belajar Dasar Cloud dan Gen AI di AWS", file: "/certificates/aws.pdf", credential: "#" },
+  { name: "Spec-Driven Development dengan Kiro", file: "/certificates/kiro.pdf", credential: "#" },
+  { name: "Belajar Pengembangan Web Intermediate", file: "/certificates/Intermediate.pdf", credential: "#" },
+  { name: "Belajar Fundamental Front-End Web Development", file: "/certificates/Fundamental.pdf", credential: "#" },
+  { name: "Fundamental Jaringan Komputer", file: "/certificates/Jaringan.pdf", credential: "#" },
 ];
