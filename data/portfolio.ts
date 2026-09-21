@@ -53,7 +53,7 @@ export const projects: ProjectItem[] = [
   {
     title: "Multi-Tenant POS & Inventory System",
     category: "Web / Full-Stack",
-    problem: "Pencatatan transaksi dan stok UKM sering kali manual, rawan selisih, dan belum memiliki sistem kasir terisolasi yang aman.",
+    problem: "Pencatatan transaksi dan stok sering kali manual, rawan selisih, dan belum memiliki sistem kasir terisolasi yang aman.",
     solution: "Membangun web POS dan inventori multi-tenant dengan RBAC, kartu stok, stock opname, cetak struk, serta proteksi keamanan (Bcrypt, Prepared Statements, CSRF/XSS).",
     stack: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
     impact: "Mempercepat transaksi harian, mencegah selisih stok barang, dan menjaga isolasi data antartoko secara aman dan terintegrasi.",
