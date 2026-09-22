@@ -45,7 +45,7 @@ export default function Portfolio() {
     { key: "all", label: "All" },
     { key: "work", label: "Work & Internship" },
     { key: "education", label: "Education & Cohort" },
-    { key: "organization", label: "Organisasi" },
+    { key: "organization", label: "Organization" },
   ];
 
   const filteredExperience = expFilter === "all"
@@ -58,14 +58,14 @@ export default function Portfolio() {
         <div className="container nav">
           <button
             className="mobile-menu"
-            aria-label={openMenu ? "Tutup menu" : "Buka menu"}
+            aria-label={openMenu ? "Close menu" : "Open menu"}
             onClick={() => setOpenMenu(!openMenu)}
           >
             {openMenu ? <X /> : <Menu />}
           </button>
           <nav
             className={openMenu ? "nav-links open" : "nav-links"}
-            aria-label="Navigasi utama"
+            aria-label="Main navigation"
           >
             {[
               "About",
@@ -98,14 +98,14 @@ export default function Portfolio() {
           <p className="hero-sub">{profile.subheadline}</p>
           <div className="cta-row">
             <a className="btn primary" href="#projects">
-              Lihat Portofolio <ArrowUpRight size={17} />
+              View Portfolio <ArrowUpRight size={17} />
             </a>
             <a
               className="btn secondary"
               href="/CV_Y_Noven_Dhimas_Nugroho.pdf"
               download
             >
-              Unduh CV <Download size={17} />
+              Download CV <Download size={17} />
             </a>
           </div>
           <div className="social-row">
@@ -120,7 +120,7 @@ export default function Portfolio() {
             </a>
           </div>
         </div>
-        <div className="hero-card profile-card" aria-label="Foto profil">
+        <div className="hero-card profile-card" aria-label="Profile photo">
           <Image
             src="/profile.jpg"
             alt="Y Noven Dhimas Nugroho"
@@ -224,7 +224,7 @@ export default function Portfolio() {
               <div className="project-links">
                 {p.demo && (
                   <a href={p.demo} target="_blank" rel="noreferrer">
-                    {p.demo.match(/\.(jpeg|jpg|gif|png)$/) != null ? "Lihat Gambar" : "Live Demo"} <ExternalLink size={15} />
+                    {p.demo.match(/\.(jpeg|jpg|gif|png)$/) != null ? "View Image" : "Live Demo"} <ExternalLink size={15} />
                   </a>
                 )}
                 {p.source && (
@@ -285,7 +285,7 @@ export default function Portfolio() {
                   <div className="publication-card">
                     <div className="publication-header">
                       <FileText size={16} />
-                      <span className="eyebrow">PUBLIKASI</span>
+                      <span className="eyebrow">PUBLICATION</span>
                     </div>
                     <h4>{e.publication.title}</h4>
                     <p>{e.publication.summary}</p>
@@ -328,8 +328,8 @@ export default function Portfolio() {
             <span className="eyebrow">06 / CONTACT</span>
             <h2>Let’s build something useful.</h2>
             <p>
-              Terbuka untuk peluang kerja, kolaborasi, dan proyek yang
-              menggabungkan data, software, dan digital product.
+              Open to job opportunities, collaborations, and projects that combine data,
+              software, and websites.
             </p>
             <div className="contact-links">
               <a href={`mailto:${profile.email}`}>
@@ -349,8 +349,8 @@ export default function Portfolio() {
             encType="text/plain"
           >
             <label>
-              Nama
-              <input name="name" required placeholder="Nama Anda" />
+              Name
+              <input name="name" required placeholder="Your Name" />
             </label>
             <label>
               Email
@@ -362,16 +362,16 @@ export default function Portfolio() {
               />
             </label>
             <label>
-              Pesan
+              Message
               <textarea
                 name="message"
                 required
                 rows={5}
-                placeholder="Ceritakan kebutuhan atau peluangnya..."
+                placeholder="Tell me about your project, needs, or opportunities..."
               />
             </label>
             <button className="btn primary" type="submit">
-              Kirim Pesan <ArrowUpRight size={17} />
+              Send Message <ArrowUpRight size={17} />
             </button>
           </form>
         </div>
@@ -402,7 +402,7 @@ export default function Portfolio() {
             <button
               className="modal-close"
               onClick={() => setCert(null)}
-              aria-label="Tutup"
+              aria-label="Close"
             >
               <X />
             </button>
