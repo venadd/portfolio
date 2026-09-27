@@ -213,7 +213,7 @@ export const otherProjects: OtherProjectItem[] = [
     ],
     link: {
       label: "View Notebook",
-      url: "https://github.com/venadd",
+      url: "",
     },
   },
   {
@@ -225,7 +225,7 @@ export const otherProjects: OtherProjectItem[] = [
     stack: ["JavaScript", "Node.js", "Machine Learning", "Web APIs"],
     link: {
       label: "View Project",
-      url: "https://github.com/venadd",
+      url: "",
     },
   },
   {
@@ -240,7 +240,7 @@ export const otherProjects: OtherProjectItem[] = [
     stack: ["Python", "Pandas", "scikit-learn", "Clustering", "Matplotlib"],
     link: {
       label: "View Notebook",
-      url: "https://github.com/venadd",
+      url: "",
     },
   },
   {
@@ -252,7 +252,7 @@ export const otherProjects: OtherProjectItem[] = [
     stack: ["Power BI", "DAX Measures", "Data Modeling", "Excel/CSV"],
     link: {
       label: "View Dashboard",
-      url: "/dashboard-preview.png",
+      url: "",
     },
   },
 ];
