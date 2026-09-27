@@ -28,17 +28,32 @@ import {
   highlights,
   skills,
   projects,
+  otherProjects,
   experience,
   certifications,
 } from "@/data/portfolio";
 import { ThemeToggle } from "./theme-toggle";
 import { SectionHeading } from "./section-heading";
+import { ProjectCarousel } from "./project-carousel";
+import { ImageLightbox } from "./image-lightbox";
+import { ProjectsSlider } from "./projects-slider";
 
 export default function Portfolio() {
   const [openMenu, setOpenMenu] = useState(false);
   const [cert, setCert] = useState<(typeof certifications)[number] | null>(
     null,
   );
+  const [lightbox, setLightbox] = useState<{
+    isOpen: boolean;
+    images: string[];
+    index: number;
+    title: string;
+  }>({
+    isOpen: false,
+    images: [],
+    index: 0,
+    title: "",
+  });
   const [expFilter, setExpFilter] = useState<string>("all");
 
   const expFilters = [
@@ -51,6 +66,16 @@ export default function Portfolio() {
   const filteredExperience = expFilter === "all"
     ? experience
     : experience.filter((e) => e.filter === expFilter);
+
+  const navLinks = [
+    { label: "About", href: "#about" },
+    { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#projects" },
+    { label: "Analytics", href: "#other-projects" },
+    { label: "Experience", href: "#experience" },
+    { label: "Credentials", href: "#credentials" },
+    { label: "Contact", href: "#contact" },
+  ];
 
   return (
     <main>
@@ -67,20 +92,13 @@ export default function Portfolio() {
             className={openMenu ? "nav-links open" : "nav-links"}
             aria-label="Main navigation"
           >
-            {[
-              "About",
-              "Skills",
-              "Projects",
-              "Experience",
-              "Credentials",
-              "Contact",
-            ].map((item) => (
+            {navLinks.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.label}
+                href={item.href}
                 onClick={() => setOpenMenu(false)}
               >
-                {item}
+                {item.label}
               </a>
             ))}
             <ThemeToggle />
@@ -95,7 +113,11 @@ export default function Portfolio() {
           </div>
           <p></p>
           <h1>{profile.hero}</h1>
-          <p className="hero-sub">{profile.subheadline}</p>
+          <div className="hero-sub">
+            {profile.subheadline.split("\n\n").map((para, idx) => (
+              <p key={idx}>{para}</p>
+            ))}
+          </div>
           <div className="cta-row">
             <a className="btn primary" href="#projects">
               View Portfolio <ArrowUpRight size={17} />
@@ -194,54 +216,116 @@ export default function Portfolio() {
       <section id="projects" className="section container">
         <SectionHeading
           eyebrow="03 / SELECTED PROJECTS"
-          title="Case studies."
+          title="Featured Case Studies"
+          description="In-depth implementations solving domain-specific challenges with applied AI, modern web engineering, and machine learning."
         />
-        <div className="projects-grid">
+        <div className="featured-cases-list">
           {projects.map((p, i) => (
-            <article className="project-card" key={p.title}>
-              <div className="project-top">
-                <span className="project-number">0{i + 1}</span>
-                <span className="category">{p.category}</span>
+            <article className="featured-case-card" key={p.title}>
+              <div className="featured-case-visual">
+                <ProjectCarousel
+                  images={p.images}
+                  title={p.title}
+                  onOpenLightbox={(idx) =>
+                    setLightbox({
+                      isOpen: true,
+                      images: p.images,
+                      index: idx,
+                      title: p.title,
+                    })
+                  }
+                />
               </div>
-              <h3>{p.title}</h3>
-              <div className="case-copy">
-                <p>
-                  <b>Problem.</b> {p.problem}
-                </p>
-                <p>
-                  <b>Solution.</b> {p.solution}
-                </p>
-              </div>
-              <div className="tags">
-                {p.stack.map((s) => (
-                  <span key={s}>{s}</span>
-                ))}
-              </div>
-              <div className="impact">
-                <CheckCircle2 size={17} />
-                <span>{p.impact}</span>
-              </div>
-              <div className="project-links">
-                {p.demo && (
-                  <a href={p.demo} target="_blank" rel="noreferrer">
-                    {p.demo.match(/\.(jpeg|jpg|gif|png)$/) != null ? "View Image" : "Live Demo"} <ExternalLink size={15} />
-                  </a>
-                )}
-                {p.source && (
-                  <a href={p.source} target="_blank" rel="noreferrer">
-                    Source Code <Github size={15} />
-                  </a>
-                )}
+
+              <div className="featured-case-content">
+                <div>
+                  <div className="featured-case-meta">
+                    <span className="project-number">0{i + 1}</span>
+                    <span className="category">{p.category}</span>
+                  </div>
+
+                  <h3 className="featured-case-title">{p.title}</h3>
+
+                  <div className="featured-case-body">
+                    <div className="case-block case-problem">
+                      <span className="case-block-label">Problem</span>
+                      <p>{p.problem}</p>
+                    </div>
+
+                    <div className="case-block case-solution">
+                      <span className="case-block-label">Solution</span>
+                      {Array.isArray(p.solution) ? (
+                        <ul className="solution-list">
+                          {p.solution.map((item, idx) => (
+                            <li key={idx}>{item}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p>{p.solution}</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="featured-case-footer">
+                  <div className="tags">
+                    {p.stack.map((s) => (
+                      <span key={s}>{s}</span>
+                    ))}
+                  </div>
+
+                  <div className="featured-case-actions">
+                    {Boolean(p.demo && p.demo.trim() !== "" && p.demo !== "#") && (
+                      <a
+                        href={p.demo}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn btn-sm primary"
+                      >
+                        Live Demo <ExternalLink size={14} />
+                      </a>
+                    )}
+                    {Boolean(p.source && p.source.trim() !== "" && p.source !== "#") && (
+                      <a
+                        href={p.source}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn btn-sm secondary"
+                      >
+                        <Github size={14} /> GitHub
+                      </a>
+                    )}
+                  </div>
+                </div>
               </div>
             </article>
           ))}
         </div>
       </section>
 
+      <section id="other-projects" className="section container">
+        <SectionHeading
+          eyebrow="04 / ADDITIONAL PROJECTS"
+          title="View other portfolios"
+          description="Selected exploratory analyses, machine learning notebooks, and analytics dashboards."
+        />
+        <ProjectsSlider
+          items={otherProjects}
+          onOpenLightbox={(images, idx, title) =>
+            setLightbox({
+              isOpen: true,
+              images,
+              index: idx,
+              title,
+            })
+          }
+        />
+      </section>
+
       <section id="experience" className="section container">
         <div className="experience-header">
           <SectionHeading
-            eyebrow="// 02. CAREER & ACADEMIA"
+            eyebrow="05 / CAREER & ACADEMIA"
             title="Experience & Education"
           />
           <div className="filter-bar">
@@ -302,7 +386,7 @@ export default function Portfolio() {
 
       <section id="credentials" className="section container">
         <SectionHeading
-          eyebrow="05 / CERTIFICATIONS"
+          eyebrow="06 / CERTIFICATIONS"
           title="Certifications & Professional Learning"
         />
         <div className="cert-list">
@@ -325,7 +409,7 @@ export default function Portfolio() {
       <section id="contact" className="section container contact-section">
         <div className="contact-card">
           <div>
-            <span className="eyebrow">06 / CONTACT</span>
+            <span className="eyebrow">07 / CONTACT</span>
             <h2>Let’s build something useful.</h2>
             <p>
               Open to job opportunities, collaborations, and projects that combine data,
@@ -421,6 +505,16 @@ export default function Portfolio() {
           </div>
         </div>
       )}
+
+      <ImageLightbox
+        isOpen={lightbox.isOpen}
+        images={lightbox.images}
+        initialIndex={lightbox.index}
+        title={lightbox.title}
+        onClose={() =>
+          setLightbox((prev) => ({ ...prev, isOpen: false }))
+        }
+      />
     </main>
   );
 }

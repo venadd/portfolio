@@ -9,73 +9,251 @@ export const profile = {
   hero:
     "Hello! I'm Y Noven Dhimas Nugroho",
   subheadline:
-    "A passionate Data Analyst and Machine Learning enthusiast with a strong background in Digital Product Development. I specialize in transforming complex data into actionable insights and building innovative digital solutions.",
+    "Informatics graduate with a background in Data Analytics, Machine Learning, and Web Development, combined with practical experience growing a website template store on Etsy (800+ global orders). Passionate about exploratory data analysis, practical AI integration, and building user-oriented web applications.",
   summary:
-    "I am a technology practitioner operating at the intersection of Data Science and Web Product Development. Experienced in end-to-end data pipelines ranging from data cleaning, exploratory data analysis (EDA), and feature engineering to predictive model deployment.\n\nBeyond algorithms and statistics, I bring real-world experience building and commercializing digital products globally through CaptivDesign, fulfilling 800+ orders across 51 countries on Etsy with an average rating of 4.9 / 5.0.\n\nI hold an official certification from BNSP (Badan Nasional Sertifikasi Profesi) as an Associate Data Scientist (Ilmuan Data Madya) and graduated with distinction from the Coding Camp by DBS Foundation x Dicoding in Front-End and Back-End Web Development.",
+    "I graduated from Dian Nuswantoro University with a degree in Informatics, focusing on data analysis, machine learning workflows, and web development. My background combines academic data science projects with practical web implementations.\n\nDuring my internship at the Semarang City Health Office, I created HealBot a health chatbot using Flask that integrates rule-based calculations with RAG pipelines and LLM model APIs. In web development, I build responsive applications, such as a story-sharing Progressive Web App (PWA) using React.js, Leaflet, and REST APIs.\n\nAlongside my studies, I manage CaptivDesign, designing and selling website templates on Etsy, where I have fulfilled over 800 orders in 51 countries with an average rating of 4.9/5.0. I hold a BNSP Associate Data Scientist certification and completed the Coding Camp program by DBS Foundation x Dicoding.",
 };
 
 export const highlights = [
   { icon: "globe", value: "800+", suffix: "", label: "Global Orders (51 Countries on Etsy)" },
   { icon: "star", value: "4.9", suffix: "/ 5.0", label: "Customer Satisfaction Rating" },
-  { icon: "graduation", value: "3.76", suffix: "/ 4.00", label: "GPA S1 Teknik Informatika (UDINUS)" },
+  { icon: "graduation", value: "900+", suffix: " Hours", label: "Intensive Coding Camp (DBS x Dicoding)" },
   { icon: "badge", value: "BNSP", suffix: "", label: "Certified Associate Data Scientist" },
 ];
 
 export const skills = [
-  { category: "Languages & Core", items: ["Python", "JavaScript / TypeScript", "SQL", "HTML5", "Tailwind CSS"] },
-  { category: "Backend & APIs", items: ["Node.js", "Hapi.js", "Express", "RESTful API", "Ollama / Local LLM"] },
-  { category: "Data Science & ML", items: ["scikit-learn", "XGBoost", "TensorFlow", "Streamlit", "EDA", "Feature Engineering"] },
-  { category: "Security & Cryptography", items: ["Digital Watermarking", "LSB", "SHA-256", "ECDSA", "Authentication Standards"] },
-  { category: "Tools & Cloud", items: ["Git", "GitHub", "MongoDB", "PostgreSQL", "Power BI", "Figma"] },
+  {
+    category: "Languages & Core",
+    items: [
+      "Python",
+      "JavaScript (ES6+)",
+      "PHP",
+      "SQL",
+      "HTML5 & CSS3"
+    ]
+  },
+  {
+    category: "Frontend & Web",
+    items: [
+      "React.js",
+      "Vite",
+      "Progressive Web Apps (PWA)",
+      "Workbox",
+      "Leaflet.js",
+      "Bootstrap",
+      "Webpack"
+    ]
+  },
+  {
+    category: "Backend & Applied AI",
+    items: [
+      "Flask",
+      "FastAPI",
+      "Node.js",
+      "RESTful API",
+      "Retrieval-Augmented Generation (RAG)",
+      "API Model LLM",
+      "Deterministic Rule Engines"
+    ]
+  },
+  {
+    category: "Data Science & ML",
+    items: [
+      "scikit-learn",
+      "Pandas & NumPy",
+      "Supervised Learning (Random Forest, SVM, Decision Tree)",
+      "Unsupervised Learning (PCA, Clustering)",
+      "Exploratory Data Analysis (EDA)",
+      "Feature Engineering",
+      "Matplotlib & Seaborn"
+    ]
+  },
+  {
+    category: "Tools & Platforms",
+    items: [
+      "Git & GitHub",
+      "Postman",
+      "Power BI",
+      "MySQL",
+      "Figma",
+      "WIX Studio",
+      "Squarespace",
+      "Canva"
+    ]
+  }
 ];
 
 export interface ProjectItem {
+  id?: string;
   title: string;
   category: string;
+  images: string[];
   problem: string;
-  solution: string;
+  solution: string | string[];
   stack: string[];
-  impact: string;
+  impact?: string;
   demo?: string;
   source?: string;
 }
 
+export interface OtherProjectItem {
+  id?: string;
+  title: string;
+  category?: string;
+  images: string[];
+  description: string;
+  stack: string[];
+  link?: {
+    label: string;
+    url: string;
+  };
+}
+
 export const projects: ProjectItem[] = [
   {
-    title: "Website Skrining Kesehatan Mandiri",
-    category: "Web / Healthtech",
-    problem: "Masyarakat membutuhkan sarana mandiri yang praktis untuk memantau tumbuh kembang balita, deteksi dini stunting, serta skrining risiko kesehatan secara terpadu.",
-    solution: "Membangun Single Page Application (SPA) arsitektur MVP dengan fitur kalkulator Z-score antropometri standar WHO/Kemenkes, pelacak siklus menstruasi, skrining kesehatan dewasa,dan informasi puskesmas.",
-    stack: ["JavaScript (ES6+)", "Webpack", "PWA", "REST API", "CSS3"],
-    impact: "Mempermudah masyarakat dalam melakukan deteksi dini risiko kesehatan dan stunting secara mandiri serta memperluas aksesibilitas layanan puskesmas.",
-    demo: "https://healthmatedkk.netlify.app/",
+    id: "healthmate-healbot",
+    title: "HealthMate & HealBot",
+    category: "Applied AI",
+    images: ["/healtmate-1.png", "/healtmate-2.png"],
+    problem:
+      "Model LLM murni memiliki risiko halusinasi perhitungan medis, serta ketiadaan personalisasi terhadap pedoman klinis kesehatan wilayah setempat.",
+    solution:
+      "Merancang chatbot skrining kesehatan berarsitektur Hybrid (Rule-Based Engine + RAG LLM) berbasis Flask RESTful API. Mengembangkan pipeline RAG dokumen lokal dengan integrasi model LLM untuk rekomendasi terstruktur dan terpersonalisasi.",
+    stack: [
+      "Python",
+      "Flask",
+      "Google Gemini API",
+      "RAG Engine",
+      "REST API",
+      "Gunicorn",
+    ],
+    demo: "https://healthmate-3ps6w8eq9-venadd.vercel.app/",
   },
   {
-    title: "Multi-Tenant POS & Inventory System",
-    category: "Web / Full-Stack",
-    problem: "Pencatatan transaksi dan stok sering kali manual, rawan selisih, dan belum memiliki sistem kasir terisolasi yang aman.",
-    solution: "Membangun web POS dan inventori multi-tenant dengan RBAC, kartu stok, stock opname, cetak struk, serta proteksi keamanan (Bcrypt, Prepared Statements, CSRF/XSS).",
+    id: "dicoding-story-app",
+    title: "DicoStory - Dicoding Sharing Platform",
+    category: "Full-Stack StoryApp",
+    images: ["/storyApp-1.png", "/storyApp-2.png"],
+    problem:
+      "Kebutuhan platform berbagi cerita visual yang responsif, dapat diinstal di perangkat (installable), andal saat jaringan lambat/offline, dan memetakan lokasi konten secara visual.",
+    solution:
+      "Membangun antarmuka berbasis React.js dan Vite yang terintegrasi dengan REST API autentikasi token. Mengintegrasikan peta interaktif Leaflet.js, notifikasi SweetAlert2, serta konfigurasi PWA (Service Worker via Workbox) untuk caching aset dan kapabilitas offline.",
+    stack: [
+      "React.js",
+      "Vite",
+      "Leaflet",
+      "SweetAlert2",
+      "PWA / Workbox",
+      "REST API",
+      "Netlify",
+    ],
+    demo: "https://dicostory.netlify.app/",
+  },
+  {
+    id: "multi-tenant-pos",
+    title: "Multi-Tenant POS & Inventory Management System",
+    category: "Full-Stack Web / Enterprise System",
+    images: [
+      "/Multi-Tenant-POS-1.png",
+      "/Multi-Tenant-POS-2.png",
+      "/Multi-Tenant-POS-3.png",
+    ],
+    problem:
+      "Pencatatan kasir dan mutasi inventori bisnis ritel manual memicu selisih stok, inefisiensi transaksi, dan risiko kebocoran data antartoko.",
+    solution:
+      "Mengembangkan sistem web POS dan inventori multi-tenant dengan kontrol akses berbasis peran (RBAC), kartu stok otomatis, stock opname, cetak struk, serta proteksi keamanan (password hashing, prepared statements, mitigasi CSRF/XSS).",
     stack: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
-    impact: "Mempercepat transaksi harian, mencegah selisih stok barang, dan menjaga isolasi data antartoko secara aman dan terintegrasi.",
     demo: "http://ekasirku.wuaze.com/eKasirku.php",
+    source: "https://github.com/venadd",
   },
   {
-    title: "Sistem Pemeliharaan Prediktif",
-    category: "Machine Learning",
-    problem: "Kegagalan operasional mesin pabrik yang tidak terduga menyebabkan downtime tak terencana dan biaya perbaikan tinggi.",
-    solution: "Membangun sistem end-to-end dengan model XGBoost dan REST API FastAPI untuk mendeteksi potensi kegagalan mesin.",
+    id: "predictive-maintenance",
+    title: "Machine Predictive Maintenance System",
+    category: "Machine Learning / Industrial IoT",
+    images: ["/predictive-maintaince-1.png", "/predictive-maintaince-2.png"],
+    problem:
+      "Kerusakan mesin industri yang tidak terdeteksi sejak awal mengakibatkan unplanned downtime dan tingginya biaya perbaikan.",
+    solution:
+      "Membangun sistem analitik end-to-end yang memanfaatkan model klasifikasi XGBoost untuk mendeteksi potensi anomali dan kegagalan komponen mekanis berdasarkan parameter sensor, disajikan melalui REST API FastAPI dan dasbor interaktif.",
     stack: ["Python", "XGBoost", "FastAPI", "JavaScript", "Bootstrap 5"],
-    impact: "Mengurangi downtime tak terencana dan mencegah kecelakaan operasional melalui prediksi kerusakan dan rekomendasi preventif.",
     demo: "https://predictive-maintenance-app-three.vercel.app/",
+    source: "https://github.com/venadd",
+  },
+];
+
+export const otherProjects: OtherProjectItem[] = [
+  {
+    id: "child-nutritional-status",
+    title: "Child Nutritional Status Prediction (Multiclass Classification)",
+    images: ["/gizi-1.png", "/gizi-2.png"],
+    description:
+      "Mengolah data antropometri anak dan melatih 5 model machine learning (Random Forest, SVM, Decision Tree, Logistic Regression, KNN) untuk mendeteksi risiko gangguan gizi.",
+    stack: ["Python", "scikit-learn", "Pandas", "Matplotlib", "Seaborn"],
+    link: {
+      label: "View Notebook",
+      url: "",
+    },
   },
   {
+    id: "customer-personality-analysis",
+    title: "Customer Personality Analysis & Segmentation",
+    images: [
+      "/marketing_campaign-1.png",
+      "/marketing_campaign-2.png",
+      "/marketing_campaign-3.png",
+    ],
+    description:
+      "Menganalisis karakteristik dan kebiasaan belanja pelanggan menggunakan clustering untuk memetakan segmen konsumen yang berbeda serta mengevaluasi efektivitas respons kampanye promosi produk.",
+    stack: [
+      "Python",
+      "scikit-learn",
+      "PCA",
+      "Agglomerative Clustering",
+      "Seaborn",
+    ],
+    link: {
+      label: "View Notebook",
+      url: "https://github.com/venadd",
+    },
+  },
+  {
+    id: "depredict",
+    title: "DepPredict: Web-Based Depression Risk Screening",
+    images: ["/Depredict-1.png", "/Depredict-2.png"],
+    description:
+      "Proyek capstone kolaboratif yang mengintegrasikan model machine learning untuk memprediksi indikasi dini depresi berdasarkan instrumen kuesioner terstruktur dengan antarmuka web interaktif.",
+    stack: ["JavaScript", "Node.js", "Machine Learning", "Web APIs"],
+    link: {
+      label: "View Project",
+      url: "https://github.com/venadd",
+    },
+  },
+  {
+    id: "wholesale-customers-clustering",
+    title: "Wholesale Customers Clustering Analysis",
+    images: [
+      "/wholesale-customers-data-1.png",
+      "/wholesale-customers-data-2.png",
+    ],
+    description:
+      "Analisis pengeluaran tahunan klien grosir lintas berbagai kategori produk (Fresh, Milk, Grocery, Frozen, dsb.) menggunakan metode clustering untuk membedah pola pembelian antarsaluran penjualan.",
+    stack: ["Python", "Pandas", "scikit-learn", "Clustering", "Matplotlib"],
+    link: {
+      label: "View Notebook",
+      url: "https://github.com/venadd",
+    },
+  },
+  {
+    id: "ecommerce-dashboard",
     title: "E-Commerce Sales Performance & Geospatial Dashboard",
-    category: "Data Analytics",
-    problem: "Kesulitan memantau performa penjualan produk digital, efektivitas kupon diskon, dan persebaran pembeli.",
-    solution: "Membangun dashboard Power BI interaktif untuk menganalisis tren, AOV, distribusi produk terlaris, serta pemetaan geografis.",
-    stack: ["Power BI", "Data Modeling", "Business Intelligence", "Excel / CSV"],
-    impact: "Memberikan visibilitas menyeluruh terhadap performa penjualan produk.",
-    demo: "/dashboard-preview.png",
+    images: ["/dashboard-preview.png"],
+    description:
+      "Dashboard analitik bisnis Power BI untuk mengevaluasi metrik omzet penjualan produk, tren AOV (Average Order Value), produk terlaris, dan pemetaan sebaran pembeli internasional.",
+    stack: ["Power BI", "DAX Measures", "Data Modeling", "Excel/CSV"],
+    link: {
+      label: "View Dashboard",
+      url: "/dashboard-preview.png",
+    },
   },
 ];
 
@@ -114,9 +292,9 @@ export const experience: ExperienceItem[] = [
     title: "Magang — Dinas Kesehatan Kota Semarang",
     type: "Technical Internship",
     bullets: [
-      "Mengolah dan membersihkan dataset menggunakan Python dengan menerapkan feature engineering, serta menangani baris data duplikat dan missing values guna menjaga kualitas data sebelum diproses oleh model.",
-      "Melakukan analisis eksplorasi data (EDA) untuk memetakan korelasi antar fitur gizi anak, serta melatih dan membandingkan performa beberapa model klasifikasi prediktif (XGBoost, Random Forest, dan Logistic Regression) untuk mendeteksi risiko stunting.",
-      "Berkolaborasi aktif dalam tim untuk merancang dan membangun antarmuka (front-end) website skrining kesehatan, serta melakukan pengujian fungsional menggunakan metode blackbox testing dan audit performa website menggunakan Lighthouse.",
+      "Merancang chatbot skrining kesehatan berbasis Rule-Based Engine + RAG LLM dengan Flask RESTful API untuk mendukung platform skrining mandiri masyarakat.",
+      "Mengintegrasikan alur Retrieval-Augmented Generation (RAG) berbasis dokumen pedoman kesehatan lokal, direktori Puskesmas, dan program intervensi wilayah setempat dengan model LLM untuk menyajikan respons konsultasi yang terstruktur dan kontekstual.",
+      "Berkolaborasi dalam antarmuka web, melaksanakan pengujian fungsionalitas sistem menggunakan metode blackbox testing, serta mengaudit performa website menggunakan Lighthouse.",
     ],
   },
   {
@@ -126,8 +304,8 @@ export const experience: ExperienceItem[] = [
     type: "Cohort / Independent Study",
     bullets: [
       "Mengikuti program pelatihan intensif melalui Studi Independen Bersertifikat yang berfokus pada pengembangan web Front-End dan Back-End.",
-      "Mempelajari dan menerapkan praktik aplikasi web dinamis dengan RESTful API berbasis Node.js, JavaScript, implementasi PWA, serta manajemen repositori Git/GitHub.",
-      "Berkolaborasi dalam tim lintas fungsi untuk merancang, serta membangun antarmuka aplikasi web deteksi dini depresi sebagai proyek capstone.",
+      "Mengembangkan aplikasi web dinamis seperti Dicoding Story App berbasis React.js dengan implementasi Progressive Web Apps (PWA), caching Service Worker, integrasi peta interaktif Leaflet.js, serta konsumsi RESTful API berbasis Node.js/Hapi.js.",
+      "Berkolaborasi dalam tim lintas fungsi menggunakan alur kerja Git/GitHub untuk merancang dan membangun antarmuka web platform deteksi dini depresi (DepPredict) sebagai proyek capstone.",
     ],
   },
   {
