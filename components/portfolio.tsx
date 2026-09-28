@@ -124,8 +124,9 @@ export default function Portfolio() {
             </a>
             <a
               className="btn secondary"
-              href="/CV_Y_Noven_Dhimas_Nugroho.pdf"
-              download
+              href={profile.cv}
+              target="_blank"
+              rel="noreferrer"
             >
               Download CV <Download size={17} />
             </a>

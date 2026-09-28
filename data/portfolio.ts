@@ -5,6 +5,7 @@ export const profile = {
   email: "novendhimasnugroho@gmail.com",
   linkedin: "https://www.linkedin.com/in/y-noven-dhimas-nugroho",
   github: "https://github.com/venadd",
+  cv: "https://drive.google.com/file/d/1WrGgTdyvMyO4jIL2qMx--LFBqbcc5acV/view?usp=sharing",
   availability: "Open to opportunities",
   hero:
     "Hello! I'm Y Noven Dhimas Nugroho",
@@ -127,7 +128,7 @@ export const projects: ProjectItem[] = [
       "REST API",
       "Gunicorn",
     ],
-    demo: "https://healthmate-3ps6w8eq9-venadd.vercel.app/",
+    demo: "https://healthmate-ten-steel.vercel.app/",
   },
   {
     id: "dicoding-story-app",
