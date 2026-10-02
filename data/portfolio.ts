@@ -218,6 +218,25 @@ export const otherProjects: OtherProjectItem[] = [
     },
   },
   {
+    id: "digital-exposome-classification",
+    title: "Digital Exposome Classification",
+    images: ["/DigitalExposome-4.png", "/DigitalExposome-3.png", "/DigitalExposome-1.png", "/DigitalExposome-2.png"],
+    description:
+      "Klasifikasi data sensor lingkungan dan fisiologis tubuh menggunakan Random Forest Classifier yang mencapai akurasi 96,64% setelah tahap normalisasi dan pembersihan data.",
+    stack: [
+      "Python",
+      "Random Forest",
+      "scikit-learn",
+      "Sensor Analytics",
+      "EDA",
+      "Matplotlib",
+    ],
+    link: {
+      label: "View Demo",
+      url: "https://digital-exposome.streamlit.app/",
+    },
+  },
+  {
     id: "depredict",
     title: "DepPredict: Web-Based Depression Risk Screening",
     images: ["/Depredict-1.png", "/Depredict-2.png"],
@@ -253,6 +272,49 @@ export const otherProjects: OtherProjectItem[] = [
     stack: ["Power BI", "DAX Measures", "Data Modeling", "Excel/CSV"],
     link: {
       label: "View Dashboard",
+      url: "",
+    },
+  },
+  {
+    id: "heart-disease-prediction",
+    title: "Heart Disease Prediction",
+    images: [
+      "/heart_disease-1.png",
+      "/heart_disease-2.png",
+      "/heart_disease-3.png",
+    ],
+    description:
+      "Mengolah data klinis penyakit jantung dengan penanganan missing values, reduksi outlier berbasis IQR, serta penyeimbangan kelas data menggunakan SMOTE untuk klasifikasi multi-kelas.",
+    stack: [
+      "Python",
+      "scikit-learn",
+      "SMOTE",
+      "IQR Outlier Handling",
+      "KNN",
+      "Decision Tree",
+      "Naive Bayes",
+    ],
+    link: {
+      label: "View Notebook",
+      url: "",
+    },
+  },
+  {
+    id: "hepatitis-survival-analysis",
+    title: "Hepatitis Survival Analysis",
+    images: ["/Hepatitis-1.png", "/Hepatitis-2.png"],
+    description:
+      "Menerapkan rekayasa fitur, standarisasi data, dan hyperparameter tuning (GridSearchCV & RandomizedSearchCV) pada model Naive Bayes, Decision Tree, serta KNN untuk memprediksi tingkat kelangsungan hidup pasien hepatitis.",
+    stack: [
+      "Python",
+      "scikit-learn",
+      "Hyperparameter Tuning",
+      "GridSearchCV",
+      "RandomizedSearchCV",
+      "Feature Engineering",
+    ],
+    link: {
+      label: "View Notebook",
       url: "",
     },
   },

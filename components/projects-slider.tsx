@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { useEffect, useState, useRef, useCallback } from "react";
+import { ChevronLeft, ChevronRight, Pause, Play, ExternalLink } from "lucide-react";
 import { OtherProjectItem } from "@/data/portfolio";
 import { ProjectCarousel } from "./project-carousel";
-import { ExternalLink } from "lucide-react";
 
 interface ProjectsSliderProps {
   items: OtherProjectItem[];
@@ -24,8 +23,8 @@ export function ProjectsSlider({
   const [isPlaying, setIsPlaying] = useState(true);
   const touchStartX = useRef<number | null>(null);
 
-  // Triple items list for seamless continuous infinite looping
-  const extendedItems = [...items, ...items, ...items];
+  // 4 sets of items provide generous buffers on both ends to eliminate any blank gaps
+  const extendedItems = [...items, ...items, ...items, ...items];
 
   // Update cards to show based on window width
   useEffect(() => {
@@ -44,32 +43,85 @@ export function ProjectsSlider({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Handle boundary reset after transition ends
-  const handleTransitionEnd = () => {
+  // Keep displayIndex synchronized when items length changes
+  useEffect(() => {
+    setDisplayIndex(items.length);
+  }, [items.length]);
+
+  // Snap boundary helper function
+  const resetBoundaryIfNeeded = useCallback(() => {
+    if (items.length === 0) return;
     if (displayIndex >= items.length * 2) {
       setIsTransitioning(false);
-      setDisplayIndex(displayIndex - items.length);
+      setDisplayIndex((prev) => prev - items.length);
     } else if (displayIndex < items.length) {
       setIsTransitioning(false);
-      setDisplayIndex(displayIndex + items.length);
+      setDisplayIndex((prev) => prev + items.length);
     }
+  }, [displayIndex, items.length]);
+
+  // Handle boundary reset after transition ends on the track itself
+  const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
+    // Only react to the track's own transform transition, not child elements (buttons, cards)
+    if (e.target !== e.currentTarget) return;
+    if (e.propertyName !== "transform") return;
+    resetBoundaryIfNeeded();
   };
+
+  // Fallback timer: if onTransitionEnd does not fire (e.g. background tab, dropped frame),
+  // guarantee boundary reset happens right after the transition finishes (450ms)
+  useEffect(() => {
+    if (items.length === 0) return;
+    if (displayIndex >= items.length * 2 || displayIndex < items.length) {
+      const snapTimer = setTimeout(() => {
+        resetBoundaryIfNeeded();
+      }, 480);
+      return () => clearTimeout(snapTimer);
+    }
+  }, [displayIndex, items.length, resetBoundaryIfNeeded]);
 
   // Re-enable transition after snap reset
   useEffect(() => {
     if (!isTransitioning) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(true);
-      }, 50);
-      return () => clearTimeout(timer);
+      const raf = requestAnimationFrame(() => {
+        const timer = setTimeout(() => {
+          setIsTransitioning(true);
+        }, 30);
+        return () => clearTimeout(timer);
+      });
+      return () => cancelAnimationFrame(raf);
     }
   }, [isTransitioning]);
+
+  // Pause auto slide and snap index if tab/browser becomes hidden
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.hidden) {
+        if (items.length > 0) {
+          setDisplayIndex((prev) => {
+            const mod = ((prev % items.length) + items.length) % items.length;
+            return items.length + mod;
+          });
+          setIsTransitioning(false);
+        }
+      } else {
+        setIsTransitioning(true);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibility);
+  }, [items.length]);
 
   // Auto slide effect
   useEffect(() => {
     if (!isPlaying || isHovered || items.length === 0) return;
 
     const timer = setInterval(() => {
+      // Do not advance while document is hidden in the background
+      if (typeof document !== "undefined" && document.hidden) return;
+
       setIsTransitioning(true);
       setDisplayIndex((prev) => prev + 1);
     }, autoPlayInterval);
@@ -79,20 +131,28 @@ export function ProjectsSlider({
 
   const handlePrev = () => {
     setIsTransitioning(true);
-    setDisplayIndex((prev) => prev - 1);
+    setDisplayIndex((prev) => {
+      if (prev <= 1) {
+        return items.length;
+      }
+      return prev - 1;
+    });
   };
 
   const handleNext = () => {
     setIsTransitioning(true);
-    setDisplayIndex((prev) => prev + 1);
+    setDisplayIndex((prev) => {
+      if (prev >= items.length * 3) {
+        return items.length + 1;
+      }
+      return prev + 1;
+    });
   };
 
   const handleDotClick = (realIdx: number) => {
     setIsTransitioning(true);
-    // Find closest target index to current displayIndex
-    const currentRealIdx = ((displayIndex % items.length) + items.length) % items.length;
-    const diff = realIdx - currentRealIdx;
-    setDisplayIndex((prev) => prev + diff);
+    // Directly target the slide in the middle set
+    setDisplayIndex(items.length + realIdx);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -115,7 +175,9 @@ export function ProjectsSlider({
   };
 
   const activeRealIndex =
-    ((displayIndex % items.length) + items.length) % items.length;
+    items.length > 0
+      ? ((displayIndex % items.length) + items.length) % items.length
+      : 0;
 
   return (
     <div
@@ -194,7 +256,9 @@ export function ProjectsSlider({
 
                   <div className="compact-card-content">
                     <div className="compact-card-header">
-                      <span className="project-number">0{realIdx + 1}</span>
+                      <span className="project-number">
+                        {String(realIdx + 1).padStart(2, "0")}
+                      </span>
                       {p.category && (
                         <span className="category">{p.category}</span>
                       )}
@@ -210,7 +274,11 @@ export function ProjectsSlider({
                         ))}
                       </div>
 
-                      {Boolean(p.link?.url && p.link.url.trim() !== "" && p.link.url !== "#") && (
+                      {Boolean(
+                        p.link?.url &&
+                          p.link.url.trim() !== "" &&
+                          p.link.url !== "#"
+                      ) && (
                         <div className="compact-card-action">
                           <a
                             href={p.link!.url}
