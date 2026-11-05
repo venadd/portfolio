@@ -502,6 +502,20 @@ export default function Portfolio() {
               >
                 Preview PDF <ExternalLink size={16} />
               </a>
+              {Boolean(
+                cert.credential &&
+                  cert.credential.trim() !== "" &&
+                  cert.credential !== "#"
+              ) && (
+                <a
+                  className="btn secondary"
+                  href={cert.credential}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Verify Credential <ExternalLink size={16} />
+                </a>
+              )}
             </div>
           </div>
         </div>

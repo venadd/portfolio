@@ -168,21 +168,39 @@ export const projects: ProjectItem[] = [
     source: "https://github.com/venadd",
   },
   {
-    id: "predictive-maintenance",
-    title: "Machine Predictive Maintenance System",
-    category: "Machine Learning / Industrial IoT",
-    images: ["/predictive-maintaince-1.png", "/predictive-maintaince-2.png"],
+    id: "etsy-bi-analytics",
+    title: "Etsy BI & Financial Analytics Platform",
+    category: "Business Intelligence & Analytics",
+    images: ["/etsy-dashboard-1.png", "/etsy-dashboard-2.png"],
     problem:
-      "Kerusakan mesin industri yang tidak terdeteksi sejak awal mengakibatkan unplanned downtime dan tingginya biaya perbaikan.",
+      "Kesulitan memantau laba bersih riil akibat struktur potongan biaya platform yang kompleks (transaction commissions, processing fees, listing renewals, and VAT), ketidaksinkronan valuta (omzet IDR vs biaya iklan Etsy Ads dalam USD)",
     solution:
-      "Membangun sistem analitik end-to-end yang memanfaatkan model klasifikasi XGBoost untuk mendeteksi potensi anomali dan kegagalan komponen mekanis berdasarkan parameter sensor, disajikan melalui REST API FastAPI dan dasbor interaktif.",
-    stack: ["Python", "XGBoost", "FastAPI", "JavaScript", "Bootstrap 5"],
-    demo: "https://predictive-maintenance-app-three.vercel.app/",
-    source: "https://github.com/venadd",
+      "Membangun platform analitik untuk memproses data ekspor CSV Etsy (Orders, Order Items, Statement Ledger, Ads Stats, Listings, Payments) menyajikan metrik KPI utama (omzet kotor, potongan diskon, estimasi laba bersih, dan margin operasional), grafik tren harian/bulanan, rincian biaya platform dan pajak, pemantauan efisiensi iklan (ROAS & spend USD).",
+    stack: [
+      "Python",
+      "FastAPI",
+      "Next.js 14",
+      "TypeScript",
+      "SQLite",
+      "Tailwind CSS",
+    ],
   },
 ];
 
 export const otherProjects: OtherProjectItem[] = [
+  {
+    id: "predictive-maintenance",
+    title: "Machine Predictive Maintenance System",
+    category: "Machine Learning",
+    images: ["/predictive-maintaince-1.png", "/predictive-maintaince-2.png"],
+    description:
+      "Prediksi untuk mendeteksi potensi anomali dan kegagalan komponen mekanis berdasarkan parameter sensor yang memanfaatkan model klasifikasi XGBoost, disajikan melalui REST API FastAPI dan dasbor interaktif.",
+    stack: ["Python", "XGBoost", "FastAPI", "JavaScript", "Bootstrap 5"],
+    link: {
+      label: "View Demo",
+      url: "https://predictive-maintenance-app-three.vercel.app/",
+    },
+  },
   {
     id: "child-nutritional-status",
     title: "Child Nutritional Status Prediction (Multiclass Classification)",
@@ -401,6 +419,7 @@ export const experience: ExperienceItem[] = [
 export const certifications = [
   { name: "BNSP Ilmuan Data Madya (Associate Data Scientist)", file: "/certificates/sertifikasi.pdf", credential: "#" },
   { name: "Certificate of Completion — Coding Camp Front-End & Back-End Developer", file: "/certificates/coding-camp.pdf", credential: "#" },
+  { name: "Data Analysis and Visualization with Power BI — Microsoft", file: "/certificates/power-bi.pdf", credential: "https://coursera.org/verify/LSG0ODHYJVY6" },
   { name: "Belajar Back-End dengan JavaScript", file: "/certificates/Back-End.pdf", credential: "#" },
   { name: "Belajar Dasar Cloud dan Gen AI di AWS", file: "/certificates/aws.pdf", credential: "#" },
   { name: "Spec-Driven Development dengan Kiro", file: "/certificates/kiro.pdf", credential: "#" },
