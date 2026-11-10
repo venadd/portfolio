@@ -131,6 +131,29 @@ export const projects: ProjectItem[] = [
     demo: "https://healthmate-ten-steel.vercel.app/",
   },
   {
+    id: "replydock-clipboard-manager",
+    title: "ReplyDock — Clipboard Manager",
+    category: "Desktop Systems & Productivity",
+    images: [
+      "/ReplyDock(1).png",
+      "/ReplyDock(2).png",
+      "/ReplyDock(3).png",
+      "/ReplyDock(4).png",
+      "/ReplyDock(5).png",
+      "/ReplyDock(6).png",
+    ],
+    problem:
+      "Keterbatasan riwayat clipboard bawaan sistem operasi yang mudah tertimpa dan hilang saat perangkat dimuat ulang, serta inefisiensi alur pengetikan pesan repetitif dengan data dinamis yang menyita waktu.",
+    solution:
+      "Merancang dan merilis aplikasi produktivitas desktop berupa floating dock. Menyediakan manajer riwayat clipboard dengan pencegahan entri ganda, sistem templat balasan instan dengan dialog pengisian variabel berpratinjau langsung, serta akses pintasan tombol cepat.",
+    stack: [
+      "Product Research",
+      "PRD",
+      "Requirements Analysis",
+      "Software Testing",
+    ],
+  },
+  {
     id: "dicoding-story-app",
     title: "DicoStory - Dicoding Sharing Platform",
     category: "Full-Stack StoryApp",
