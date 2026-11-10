@@ -145,7 +145,7 @@ export const projects: ProjectItem[] = [
     problem:
       "Keterbatasan riwayat clipboard bawaan sistem operasi yang mudah tertimpa dan hilang saat perangkat dimuat ulang, serta inefisiensi alur pengetikan pesan repetitif dengan data dinamis yang menyita waktu.",
     solution:
-      "Merancang dan merilis aplikasi produktivitas desktop berupa floating dock. Menyediakan manajer riwayat clipboard dengan pencegahan entri ganda, sistem templat balasan instan dengan dialog pengisian variabel berpratinjau langsung, serta akses pintasan tombol cepat.",
+      "Merancang dan merilis aplikasi produktivitas desktop berupa floating dock. Menyediakan manajer riwayat clipboard, custom template balasan instan dengan pengisian variabel, serta akses pintasan tombol cepat.",
     stack: [
       "Product Research",
       "PRD",
